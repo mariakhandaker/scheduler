@@ -4,10 +4,10 @@ import "components/DayListItem.scss";
 
 const formatSpots = function(spots) {
   if (spots === 0) {
-    return "all booked up!";
+    return "no spots remaining";
   }
   if (spots === 1) {
-    return "one spot remaining!";
+    return "1 spot remaining";
   }
   if (spots > 1) {
     return `${spots} spots remaining`;
@@ -19,6 +19,7 @@ export default function DayListItem(props) {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0
   })
+  
   return (
     <li className={day} onClick={() => props.setDay(props.name)}>
       <h2 className="text--regular">{props.name}</h2> 
