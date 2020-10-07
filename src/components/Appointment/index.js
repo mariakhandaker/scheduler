@@ -28,21 +28,23 @@ export default function Appointment(props) {
     (interview) ? SHOW : EMPTY
   )
   function save(name, interviewer) {
-    let interview = {
+    const interview = {
       student: name,
       interviewer
     }
     transition(SAVING);
-    props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW))
-    .catch(error => transition(ERROR_SAVE))
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(error => transition(ERROR_SAVE, true))
   }
   
-  function deleteInterview() {
-    transition(DELETING);
-    props.cancelInterview(props.id)
-    .then(() => transition(EMPTY))
-    .catch(error => transition(ERROR_DELETE)) 
+  function deleteInterview(event) {
+    transition(DELETING, true);
+    props
+      .cancelInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch(error => transition(ERROR_DELETE, true)) 
   }
   return (
     <article className="appointment"> 
