@@ -19,8 +19,17 @@ export default function Form(props) {
   }
  
   const handleSave = () => {
-    onSave(name, interviewer);
+    if (!interviewer) {
+      alert("Please select an interviewer");
+      return;
+    } else if (!name) {
+      alert("Please enter your name!");
+      return;
+    } else {
+      onSave(name, interviewer);
+    }
   }
+  
   return(
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
