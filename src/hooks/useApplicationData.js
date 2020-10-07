@@ -13,9 +13,9 @@ export default function useApplicationData(props) {
   
   useEffect(() => { 
     Promise.all([
-        axios.get('http://localhost:8001/api/days'),
-        axios.get('http://localhost:8001/api/appointments'),
-        axios.get('http://localhost:8001/api/interviewers')
+        axios.get('/api/days'),
+        axios.get('/api/appointments'),
+        axios.get('/api/interviewers')])
         .then(all => {
           setState(prev => ({ 
             ...prev, 
@@ -24,13 +24,11 @@ export default function useApplicationData(props) {
            interviewers: all[2].data
           })) 
         })
-    ]).catch((err) => {console.log(err)
-    }, []) 
-  });
-  
-  
+      .catch((err) => {console.log(err)}) 
+  }, []); 
   
   function bookInterview(id, interview) {
+    console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -39,11 +37,12 @@ export default function useApplicationData(props) {
       ...state.appointments,
       [id]: appointment
     }
-    return axios.put(`/api/appointments/${id}`, appointment)
-    .then(() => { setState({
-      ...state,
-      appointments
-      });
+    return axios.put(`/api/appointments/${id}`, {interview})
+    .then(() => { 
+      setState({
+        ...state,
+        appointments
+      }) 
       return true;
     });
   }
@@ -56,7 +55,7 @@ export default function useApplicationData(props) {
       ...state.appointments,
       [id]: appointment
     };
-    return axios.put(`/api/appointments/${id}`, appointment)
+    return axios.delete(`/api/appointments/${id}`)
     .then(() => { setState({
         ...state,
         appointments
@@ -65,5 +64,5 @@ export default function useApplicationData(props) {
     });
   }
   
-  return { state, setDay, bookInterview, cancelInterview}
+  return { state, setDay, bookInterview, cancelInterview }
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { action } from "@storybook/addon-actions/dist/preview";
 
 export default function Show(props) {
   const { student, interviewer, onEdit, onDelete } = props;
@@ -17,12 +16,12 @@ export default function Show(props) {
           <img
             className="appointment__actions-button"
             src="images/edit.png"
-            alt="Edit" onEdit={action("onEdit")} onClick={onEdit}
+            alt="Edit" onClick={onEdit}
           />
           <img
             className="appointment__actions-button"
             src="images/trash.png"
-            alt="Delete" onDelete={action("onDelete")} onClick={onDelete}
+            alt="Delete" onClick={onDelete}
           />
         </section>
       </section>
