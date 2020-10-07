@@ -14,20 +14,17 @@ export function getInterview(state, interview) {
   if (!interview) {
     return null;
   }
-  const interviewInfo = {
+  return {
     student: interview.student,
     interviewer: state.interviewers[interview.interviewer],
   }
-  return interviewInfo;
 }
 
-export function getInterviewersForDay(state, interviewer) {
+export function getInterviewersForDay(state, day) {
   const interviewers = [];
-  state.days.forEach((weekday) => {
-    if (weekday.name === day) {
-      weekday.appointments.forEach((interviewer) => {
-        interviewers.push(state.appointments[interviewer])
-      })
+  state.days.forEach((selected) => {
+    if (selected.name === day) {
+      interviewers.map((interviewer) => state.interviewers[interviewer])
     }
   })
   return interviewers.length ? interviewers : []
