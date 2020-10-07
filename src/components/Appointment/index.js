@@ -49,7 +49,7 @@ export default function Appointment(props) {
       <Header time={time}/>
       {mode === EMPTY && 
         <Empty 
-          onAdd={() => { return transition(CREATE) }} 
+          onAdd={() => transition(CREATE)} 
         />}
       {mode === SHOW && interview && (
           <Show
