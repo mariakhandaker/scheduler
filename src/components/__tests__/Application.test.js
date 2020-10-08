@@ -28,7 +28,7 @@ describe("Application", () => {
   });
   
 
-  it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
+  xit("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
     const { container } = render(<Application />);
   
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -56,7 +56,7 @@ describe("Application", () => {
     console.log(prettyDOM(day));
     })
   
-    it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
+    xit("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
       // 1. Render the Application.
       const { container, debug } = render(<Application />);
     
@@ -78,11 +78,11 @@ describe("Application", () => {
     
       debug();
     });
-    it("loads data, edits an interview and keeps the spots remaining for Monday the same", () => {})
-    it("shows the save error when failing to save an appointment", () => {
+    xit("loads data, edits an interview and keeps the spots remaining for Monday the same", () => {})
+    xit("shows the save error when failing to save an appointment", () => {
       axios.put.mockRejectedValueOnce();
     })
-    it("shows the delete error when failing to delete an existing appointment", () => {
+    xit("shows the delete error when failing to delete an existing appointment", () => {
       
     })
       
